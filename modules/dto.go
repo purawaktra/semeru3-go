@@ -1,13 +1,12 @@
 package modules
 
-type Accounts struct {
-	AccountId    uint   `json:"account-id"`
-	FirstName    string `json:"first_name"`
-	LastName     string `json:"last_name"`
-	Address      string `json:"address"`
-	City         string `json:"city"`
-	Province     string `json:"province"`
-	Zipcode      string `json:"zipcode"`
-	EmailAddress string `json:"email_address"`
-	PhoneNumber  uint   `json:"phone_number"`
+type Profile struct {
+	AccountId   int    `json:"account-id"`
+	FirstName   string `json:"first_name"`
+	LastName    string `json:"last_name"`
+	Address     string `json:"address"`
+	City        int    `json:"city"`
+	Province    int    `json:"province"`
+	Zipcode     string `json:"zipcode"`
+	PhoneNumber string `json:"phone_number"`
 }

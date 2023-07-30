@@ -1,0 +1,273 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This is API documentation on DataBx Semeru3 Microservices",
+    "version": "1.0.0",
+    "title": "DataBx Semeru3 Microservices",
+    "contact": {
+      "email": "akbar.muhammadakbarmaulana@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "profile",
+      "description": "store personal any information regarding to the account"
+    }
+  ],
+  "paths": {
+    "/select/profile/id": {
+      "post": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Get single profile by given id",
+        "description": "Should only return single account profile",
+        "operationId": "GetProfileById",
+        "security": [
+          {"basicAuth":  []}
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RequestId"
+          },
+          {
+            "$ref": "#/components/parameters/Host"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Profile"
+        },
+        "responses": {
+          "200": {
+            "description": "GetProfileById success, with given request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Profile"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Check request, body not comply with request rules"
+          },
+          "401": {
+            "description": "You are not permitted!"
+          },
+          "500": {
+            "description": "General error, system cannot tell you what wrongs"
+          }
+        }
+      }
+    },
+    "/insert/profile": {
+      "post": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Insert profile by given constrain, account id must be set",
+        "description": "Only create single account profile",
+        "operationId": "InsertProfile",
+        "security": [
+          {"basicAuth":  []}
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Host"
+          },
+          {
+            "$ref": "#/components/parameters/RequestId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Profile"
+        },
+        "responses": {
+          "200": {
+            "description": "InsertProfile success, with given request"
+          },
+          "400": {
+            "description": "Check request, body not comply with request rules"
+          },
+          "401": {
+            "description": "You are not permitted!"
+          },
+          "500": {
+            "description": "General error, system cannot tell you what wrongs"
+          }
+        }
+      }
+    },
+    "/update/profile": {
+      "post": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Update profile by given constrain, account id must be set",
+        "description": "Only update single profile",
+        "operationId": "UpdateProfile",
+        "security": [
+          {"basicAuth":  []}
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Host"
+          },
+          {
+            "$ref": "#/components/parameters/RequestId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Profile"
+        },
+        "responses": {
+          "200": {
+            "description": "UpdateProfile success, with given request"
+          },
+          "400": {
+            "description": "Check request, body not comply with request rules"
+          },
+          "401": {
+            "description": "You are not permitted!"
+          },
+          "500": {
+            "description": "General error, system cannot tell you what wrongs"
+          }
+        }
+      }
+    },
+    "/delete/credential": {
+      "post": {
+        "tags": [
+          "profile"
+        ],
+        "summary": "Delete profile by given constrain, account id must be set",
+        "description": "Only delete single profile",
+        "operationId": "DeleteProfile",
+        "security": [
+          {"basicAuth":  []}
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Host"
+          },
+          {
+            "$ref": "#/components/parameters/RequestId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Profile"
+        },
+        "responses": {
+          "200": {
+            "description": "DeleteProfile success, with given request"
+          },
+          "400": {
+            "description": "Check request, body not comply with request rules"
+          },
+          "401": {
+            "description": "You are not permitted!"
+          },
+          "500": {
+            "description": "General error, system cannot tell you what wrongs"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:7718/semeru2/api/v1"
+    }
+  ],
+  "components": {
+    "requestBodies": {
+      "Profile": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Profile"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Profile": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "account_id": {
+            "type": "integer",
+            "format": "uint",
+            "minimum": 1
+          },
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "integer",
+            "format": "int",
+            "minimum": 0
+          },
+          "province": {
+            "type": "integer",
+            "format": "int",
+            "minimum": 0
+          },
+          "zipcode": {
+            "type": "string"
+          },
+          "phone_number": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    "parameters": {
+      "Host": {
+        "name": "host",
+        "in": "header",
+        "description": "Id that defines you as host",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "maxLength": 5
+        }
+      },
+      "RequestId": {
+        "name": "request_id",
+        "in": "header",
+        "description": "Request id that accompanies, what else request",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "maxLength": 36,
+          "pattern": "[A-Za-z0-9]{8}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{4}-[A-Za-z0-9]{12}"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ]
+}

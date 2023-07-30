@@ -1,6 +1,6 @@
 package entities
 
-type Accounts struct {
+type Profile struct {
 	AccountId   uint   `gorm:"primary_key"`
 	FirstName   string `gorm:"column:first_name"`
 	LastName    string `gorm:"column:last_name"`
@@ -8,5 +8,5 @@ type Accounts struct {
 	City        uint   `gorm:"column:city"`
 	Province    uint   `gorm:"column:province"`
 	Zipcode     string `gorm:"column:zipcode"`
-	PhoneNumber uint   `gorm:"column:phone_number"`
+	PhoneNumber string `gorm:"column:phone_number"`
 }
